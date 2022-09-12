@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 const home = require('./routes/home')
 const users = require('./routes/usersRoute')
 const user = require('./routes/userRoute')
+const userEntries = require('./routes/entriesRoute')
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, ()=>{
   console.log('db connected');
@@ -23,6 +24,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, ()=>{
 app.use(home)
 app.use('/users', users)
 app.use(user)
+app.use(userEntries)
 
 
 app.listen(process.env.PORT, ()=>{
