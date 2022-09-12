@@ -14,6 +14,9 @@ const entrySchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  date_of_update: {
+    type: Date
+  },
   author: { 
     type: Schema.Types.ObjectId, 
     ref: 'User' 
