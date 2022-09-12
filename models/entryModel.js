@@ -19,10 +19,9 @@ const entrySchema = new mongoose.Schema({
   },
   author: { 
     type: Schema.Types.ObjectId, 
-    ref: 'User' 
+    ref: 'User',
   }
 })
-
 const entryModel = mongoose.model('Entry', entrySchema)
 
 module.exports = { entryModel, entrySchema }

@@ -14,15 +14,14 @@ const userSchema = new mongoose.Schema({
   entries: [
     { 
       type: Schema.Types.ObjectId, 
-      ref: 'Entry' 
+      ref: 'Entry',
+      autopopulate:true
     }
   ],
-  userInfo: {
-    type: Schema.Types.ObjectId, 
-    ref: 'UserInfo'
-  }
+  Interests: [String],
+  ProfilePic: String,
 })
 
 const userModel = mongoose.model('User', userSchema)
 
-module.exports = { userModel, userSchema }
+module.exports = { userSchema, userModel }
