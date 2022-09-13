@@ -50,7 +50,7 @@ router.post('/:user/entry', async (req,res)=>{
   }
 })
 
-router.delete(':user/entry/:id', async (req,res)=>{
+router.delete('/:user/entry/:id', async (req,res)=>{
   const entryId = req.params.id
   try {
     await entry.entryModel.deleteOne({ _id: { $eq: entryId } })
