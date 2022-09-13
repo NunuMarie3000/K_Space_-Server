@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
     { 
       type: Schema.Types.ObjectId, 
       ref: 'Entry',
-      autopopulate:true
     }
   ],
   Interests: [String],
