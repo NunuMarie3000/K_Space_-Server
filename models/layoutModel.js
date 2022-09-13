@@ -9,6 +9,14 @@ const layoutSchema = new mongoose.Schema({
   },
   backColor: String,
   backImage: String,
+  fontBodyColor: String,
+  fontTitleColor: String,
+  songSrc: String,
+  heroImg1: String,
+  heroImg1Alt: String,
+  heroImg2: String,
+  heroImg2Alt: String,
+
 })
 
 const layoutModel = mongoose.model('Layout', layoutSchema)
