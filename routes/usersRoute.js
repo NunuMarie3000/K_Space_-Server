@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
     const allUsers = await user.userModel.find({})
     res.status(200).send(allUsers)
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 
@@ -19,7 +19,7 @@ router.get('/:id', async (req,res)=>{
     const publicUser = await user.userModel.findById(userId)
     res.status(200).send(publicUser)
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 

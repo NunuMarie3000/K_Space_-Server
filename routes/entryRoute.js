@@ -13,7 +13,7 @@ router.delete('/entry/:id', async (req,res)=>{
     await entry.entryModel.deleteOne({ _id: { $eq: entryId } })
     res.status(200).send('Entry deleted')
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 
@@ -33,7 +33,7 @@ router.put('/entry/:id', async (req,res)=>{
     await entry.entryModel.findById(postId).updateOne(updatedPostBody)
     res.status(202).send('post updated')
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 

@@ -13,7 +13,7 @@ router.get('/:user', async (req,res)=>{
     const searchedUser = await user.userModel.findOne({"_id": {$eq: userId}}).populate("entries")
     res.status(200).send(searchedUser)
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 
@@ -24,7 +24,7 @@ router.get('/:user/entries', async (req,res)=>{
     const searchedUser = await user.userModel.findById(userId).populate("entries").exec()
     res.status(200).send(searchedUser.entries)
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 
@@ -46,7 +46,7 @@ router.post('/:user/entry', async (req,res)=>{
     await author.save()
     res.status(201).send('post created')
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 

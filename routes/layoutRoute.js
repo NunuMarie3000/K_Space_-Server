@@ -5,7 +5,7 @@ const router = express.Router()
 const layout = require('../models/layoutModel')
 
 // create new layout, should be done when user creates account
-router.post('/layout/:user', async (req, res) => {
+router.post('/:user', async (req, res) => {
   const userId = req.params.user
   try {
     const newLayout = await layout.layoutModel.create({
@@ -22,18 +22,29 @@ router.post('/layout/:user', async (req, res) => {
     await newLayout.save()
     res.status(201).send('layout created')
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
   }
 })
 
-
-router.get('/layout/:user', async (req, res) => {
+router.get('/:user', async (req, res) => {
   const userId = req.params.user
   try {
     const response = await layout.layoutModel.find({ user: userId })
     res.status(200).send(response)
   } catch (error) {
-    console.log(error.message)
+    res.send(error)
+  }
+})
+
+// update route for when user submits update layout form
+router.put('/:user', async (req,res)=>{
+  const userId = req.params.user
+  const updatedBody = req.body
+  try {
+    await layout.layoutModel.find({ user: userId }).updateOne(updatedBody)
+    res.status(200).send('layout updated')
+  } catch (error) {
+    res.send(error)
   }
 })
 
