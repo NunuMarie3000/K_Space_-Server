@@ -50,39 +50,5 @@ router.post('/:user/entry', async (req,res)=>{
   }
 })
 
-router.delete('/:user/entry/:id', async (req,res)=>{
-  const entryId = req.params.id
-  try {
-    await entry.entryModel.deleteOne({ _id: { $eq: entryId } })
-    res.status(200).send('Entry deleted')
-  } catch (error) {
-    console.log(error.message)
-  }
-})
-
-// update post
-// could probs just be '/entry/:id' and post '/entry' but for the sake of my own clarity, it shall remain this way
-router.put('/:user/entry/:id', async (req,res)=>{
-  // const userId = req.params.user
-  const postId = req.params.id
-  const updatedPostBody = {
-    title: req.body.title,
-    body: req.body.body,
-    date_of_entry: req.body.date_of_entry,
-    date_of_update: Date.now(),
-    author: req.params.user
-  }
-  try {
-    await entry.entryModel.findById(postId).updateOne(updatedPostBody)
-    res.status(202).send('post updated')
-  } catch (error) {
-    console.log(error.message)
-  }
-})
-
-// delete post
-// router.delete('/:user/entry/:id', (req,res)=>{
-
-// })
 
 module.exports = router
