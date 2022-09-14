@@ -4,6 +4,7 @@
 const express = require('express')
 const router = express.Router()
 const entry = require('../models/entryModel') 
+const user = require('../models/userModel')
 
 // maybe i'll come back later and redo /:user/entry/:id, but we'll see
 
@@ -39,16 +40,33 @@ router.put('/entry/:id', async (req,res)=>{
 
 // i need a default blogpost route
 router.post('/newentry/:user', async (req,res)=>{
+  const userId = req.params.user
   const defaultPostBody = {
     title: 'New Blog Post!',
-    body: "This is a default blog post! We're excited to have you here at k_space! Please enjoy!",
+    body: "This is a default blog post! We're excited to have you here at k_space! Please enjoy! Try editing this blog post to get into the swing of things!",
     date_of_entry: Date.now(),
-    author: req.params.user
+    author: userId
   }
   try {
     const defaultPost = await entry.entryModel.create(defaultPostBody)
+    const author = await user.userModel.findById(userId)
     await defaultPost.save()
-    res.status(201).send('default post created')
+    author.entries = [defaultPost]
+    await author.save()
+    res.status(201).send('default posts created')
+  } catch (error) {
+    res.send(error)
+  }
+})
+
+// get all entries by user
+router.get('/:user/entries', async (req,res)=>{
+  const userId = req.params.user
+  try {
+    const searchedUser = await user.userModel.findById(userId).populate("entries").exec()
+    const entries = searchedUser.entries
+    const reverse = entries.reverse()
+    res.status(200).send(reverse)
   } catch (error) {
     res.send(error)
   }

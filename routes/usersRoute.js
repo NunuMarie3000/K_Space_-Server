@@ -12,15 +12,15 @@ router.get('/', async (req,res)=>{
   }
 })
 
-// will be public, come back to this
-router.get('/:id', async (req,res)=>{
-  const userId = req.params.id
-  try {
-    const publicUser = await user.userModel.findById(userId)
-    res.status(200).send(publicUser)
-  } catch (error) {
-    res.send(error)
-  }
-})
+// // will be public, come back to this
+// router.get('/:id', async (req,res)=>{
+//   const userId = req.params.id
+//   try {
+//     const publicUser = await user.userModel.findById(userId)
+//     res.status(200).send(publicUser)
+//   } catch (error) {
+//     res.send(error)
+//   }
+// })
 
 module.exports = router

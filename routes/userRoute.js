@@ -47,25 +47,12 @@ router.get('/:email', async (req,res)=>{
 })
 
 // get 1 user
-router.get('/:user', async (req,res)=>{
+router.get('/user/:user', async (req,res)=>{
   const userId = req.params.user
   console.log('hello')
   try {
     const searchedUser = await user.userModel.find({"_id": {$eq: userId}}).populate("entries")
     res.status(200).send(searchedUser)
-  } catch (error) {
-    res.send(error)
-  }
-})
-
-// get all entries by user
-router.get('/:user/entries', async (req,res)=>{
-  const userId = req.params.user
-  try {
-    const searchedUser = await user.userModel.findById(userId).populate("entries").exec()
-    const entries = searchedUser.entries
-    const reverse = entries.reverse()
-    res.status(200).send(reverse)
   } catch (error) {
     res.send(error)
   }
