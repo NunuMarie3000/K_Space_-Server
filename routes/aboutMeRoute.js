@@ -4,7 +4,7 @@ const express = require('express')
 const router = express.Router()
 const aboutMe = require('../models/aboutMeModel')
 
-// create new layout, should be done when user creates account
+// create new about me, should be done when user creates account
 router.post('/:user', async (req, res) => {
   const userId = req.params.user
   try {
