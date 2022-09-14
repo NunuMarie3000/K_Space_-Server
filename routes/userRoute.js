@@ -6,6 +6,22 @@ const router = express.Router()
 const user = require('../models/userModel')
 const entry = require('../models/entryModel') 
 
+// i need post route to create a new user
+router.post('/new', async (req,res)=>{
+  try {
+    const newUser = await user.userModel.create({
+      username: req.body.username,
+      email: req.body.email
+    }) 
+    await newUser.save()
+    console.log(newUser)
+    res.status(201).send('new user created :)')
+  } catch (error) {
+    console.log(error.message)
+    res.send(error)
+  }
+})
+
 // get 1 user
 router.get('/:user', async (req,res)=>{
   const userId = req.params.user
