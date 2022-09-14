@@ -43,15 +43,23 @@ router.post('/newentry/:user', async (req,res)=>{
   const userId = req.params.user
   const defaultPostBody = {
     title: 'New Blog Post!',
-    body: "This is a default blog post! We're excited to have you here at k_space! Please enjoy! Try editing this blog post to get into the swing of things!",
+    body: "This is a default blog post! We're excited to have you here at k_space! Please enjoy!",
+    date_of_entry: Date.now(),
+    author: userId
+  }
+  const defaultPostBody2 = {
+    title: 'Give it a try!',
+    body: " Try editing this blog post to get into the swing of things!",
     date_of_entry: Date.now(),
     author: userId
   }
   try {
     const defaultPost = await entry.entryModel.create(defaultPostBody)
+    const defaultPost2 = await entry.entryModel.create(defaultPostBody2)
     const author = await user.userModel.findById(userId)
     await defaultPost.save()
-    author.entries = [defaultPost]
+    await defaultPost2.save()
+    author.entries = [defaultPost, defaultPost2]
     await author.save()
     res.status(201).send('default posts created')
   } catch (error) {
