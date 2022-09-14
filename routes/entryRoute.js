@@ -37,4 +37,21 @@ router.put('/entry/:id', async (req,res)=>{
   }
 })
 
+// i need a default blogpost route
+router.post('/newentry/:user', async (req,res)=>{
+  const defaultPostBody = {
+    title: 'New Blog Post!',
+    body: "This is a default blog post! We're excited to have you here at k_space! Please enjoy!",
+    date_of_entry: Date.now(),
+    author: req.params.user
+  }
+  try {
+    const defaultPost = await entry.entryModel.create(defaultPostBody)
+    await defaultPost.save()
+    res.status(201).send('default post created')
+  } catch (error) {
+    res.send(error)
+  }
+})
+
 module.exports = router
