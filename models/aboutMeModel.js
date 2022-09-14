@@ -7,6 +7,7 @@ const aboutMeSchema = new mongoose.Schema({
     ref: 'User',
   },
   about_me: String,
+  interests: [String],
 })
 
 const aboutMeModel = mongoose.model('AboutMe', aboutMeSchema)
