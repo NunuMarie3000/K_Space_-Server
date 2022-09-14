@@ -22,7 +22,9 @@ router.get('/:user/entries', async (req,res)=>{
   const userId = req.params.user
   try {
     const searchedUser = await user.userModel.findById(userId).populate("entries").exec()
-    res.status(200).send(searchedUser.entries)
+    const entries = searchedUser.entries
+    const reverse = entries.reverse()
+    res.status(200).send(reverse)
   } catch (error) {
     res.send(error)
   }
