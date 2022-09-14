@@ -45,6 +45,7 @@ router.post('/newentry/:user', async (req,res)=>{
     date_of_entry: Date.now(),
     author: req.params.user
   }
+  console.log(defaultPostBody)
   try {
     const defaultPost = await entry.entryModel.create(defaultPostBody)
     await defaultPost.save()
