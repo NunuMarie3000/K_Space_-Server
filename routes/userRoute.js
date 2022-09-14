@@ -35,6 +35,17 @@ router.post('/new', async (req,res)=>{
   }
 })
 
+// get existing user's id
+router.get('/:email', async (req,res)=>{
+  const memberEmail = req.params.email
+  try {
+    const memberUser = await user.userModel.findOne({"email": memberEmail})
+    res.status(200).send(memberUser)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
 // get 1 user
 router.get('/:user', async (req,res)=>{
   const userId = req.params.user
