@@ -6,6 +6,19 @@ const router = express.Router()
 const user = require('../models/userModel')
 const entry = require('../models/entryModel') 
 
+// i fucked up, need to delete all but one in users collection
+// we're good, something tells me to hold onto this route while i'm building
+
+// router.delete('/:user', async (req,res)=>{
+//   const doNotDelete = req.params.user
+//   try {
+//     await user.userModel.deleteMany({"_id": {$ne: doNotDelete}})
+//     res.send('hopefully they all gone')
+//   } catch (error) {
+//     res.send(error)
+//   }
+// })
+
 // i need post route to create a new user
 router.post('/new', async (req,res)=>{
   try {
