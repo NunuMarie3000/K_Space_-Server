@@ -11,6 +11,8 @@ router.post('/:user', async (req, res) => {
     const defaultAboutMe = await aboutMe.aboutMeModel.create({
       user: userId,
       about_me: "This is the 'About Me' Section! Click edit to add any information about yourself you want others to know!",
+      image: "https://images.unsplash.com/photo-1663076121570-eb6e69bdde3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
+      alt: "Photo by Renato Ramos Puma on Unsplash"
     })
     await defaultAboutMe.save()
     res.status(201).send('default about me created')
