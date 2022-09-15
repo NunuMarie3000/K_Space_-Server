@@ -31,7 +31,7 @@ router.get('/:user', async (req, res) => {
   }
 })
 
-// update route for when user updates their aboutme section
+// update route for when user updates their profile section
 router.put('/:user', async (req,res)=>{
   const userId = req.params.user
   const updatedBody = req.body

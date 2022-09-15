@@ -8,6 +8,8 @@ const profileSchema = new mongoose.Schema({
   },
   profile: String,
   mood: String,
+  profilePic: String,
+  username: String
 })
 
 const profileModel = mongoose.model('Profile', profileSchema)
