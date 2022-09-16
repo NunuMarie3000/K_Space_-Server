@@ -9,6 +9,7 @@ const aboutMeSchema = new mongoose.Schema({
   about_me: String,
   interests: [String],
   image: String,
+  alt: String
 })
 
 const aboutMeModel = mongoose.model('AboutMe', aboutMeSchema)
